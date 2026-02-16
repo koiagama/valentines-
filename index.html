@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <title>For You 💕</title>
 
+<!-- Mobile responsive -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <!-- cute font -->
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
@@ -16,12 +19,15 @@ body {
 
 .screen {
     display: none;
-    padding: 30px;
+    padding: 20px;
 }
 
 #screen1 { display: block; }
 
-img { max-width: 90%; }
+img {
+    max-width: 95%;
+    height: auto;
+}
 
 /* buttons */
 button {
@@ -49,12 +55,13 @@ button {
 .heart-gifts {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    margin-top: 50px;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
 }
 
 .gift-heart {
-    font-size: 70px;
+    font-size: 50px;
     cursor: pointer;
     transition: transform 0.2s;
 }
@@ -70,11 +77,12 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1000;
 }
 
 #giftImage {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 95vw;
+    max-height: 95vh;
 }
 
 /* stars */
@@ -86,21 +94,29 @@ button {
 .star-notes {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    margin-top: 50px;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
 }
 
 .star {
-    font-size: 60px;
+    font-size: 40px;
     cursor: pointer;
 }
 
 #noteBox {
     background: white;
-    padding: 25px;
-    border-radius: 20px;
-    width: 80%;
-    max-width: 500px;
+    padding: 20px;
+    border-radius: 15px;
+    width: 85%;
+    max-width: 450px;
+}
+
+/* mobile adjustments */
+@media (max-width: 500px) {
+    .gift-heart { font-size: 40px; }
+    .star { font-size: 30px; }
+    button { font-size: 16px; padding: 8px 16px; }
 }
 </style>
 </head>
