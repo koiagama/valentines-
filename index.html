@@ -43,7 +43,7 @@ button {
     margin-top: 20px;
 }
 
-/* hearts bg */
+/* hearts background */
 .hearts-bg {
     background-color: #ffd6e8;
     background-image: radial-gradient(circle, #ff9ecf 10%, transparent 11%);
@@ -69,7 +69,7 @@ button {
 .gift-heart:hover { transform: scale(1.2); }
 
 /* overlay */
-#overlay, #noteOverlay {
+#overlay {
     display: none;
     position: fixed;
     inset: 0;
@@ -85,37 +85,9 @@ button {
     max-height: 95vh;
 }
 
-/* stars */
-.stars-bg {
-    background: linear-gradient(180deg, #fbd3e9, #cbb4f6);
-    min-height: 100vh;
-}
-
-.star-notes {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 30px;
-}
-
-.star {
-    font-size: 40px;
-    cursor: pointer;
-}
-
-#noteBox {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    width: 85%;
-    max-width: 450px;
-}
-
 /* mobile adjustments */
 @media (max-width: 500px) {
     .gift-heart { font-size: 40px; }
-    .star { font-size: 30px; }
     button { font-size: 16px; padding: 8px 16px; }
 }
 </style>
@@ -125,31 +97,31 @@ button {
 
 <!-- 1 -->
 <div id="screen1" class="screen">
-    <img src="valentines-/letter.png" onclick="showScreen(2)">
+    <img src="valentines/letter.png" onclick="showScreen(2)">
 </div>
 
 <!-- 2 -->
 <div id="screen2" class="screen">
-    <img src="valentines-/valentine.png"><br><br>
+    <img src="valentines/valentine.png"><br><br>
     <button onclick="showScreen(3)">Yes!</button>
     <button id="noBtn" onclick="this.style.display='none'">No!</button>
 </div>
 
 <!-- 3 -->
 <div id="screen3" class="screen">
-    <img src="valentines-/final.png">
+    <img src="valentines/final.png">
     <button class="heart" onclick="nextSlide()">❤️</button>
 </div>
 
 <!-- 4 -->
 <div id="screen4" class="screen">
-    <img src="valentines-/final1.png">
+    <img src="valentines/final1.png">
     <button class="heart" onclick="nextSlide()">❤️</button>
 </div>
 
 <!-- 5 -->
 <div id="screen5" class="screen">
-    <img src="valentines-/final2.png">
+    <img src="valentines/final2.png">
     <button class="heart" onclick="showScreen(6)">❤️</button>
 </div>
 
@@ -157,51 +129,10 @@ button {
 <div id="screen6" class="screen hearts-bg">
     <h2>Open all the hearts 💕</h2>
     <div class="heart-gifts">
-        <div class="gift-heart" onclick="openGift(this,'valentines-/val1.png')">💝</div>
-        <div class="gift-heart" onclick="openGift(this,'valentines-/val2.png')">💝</div>
-        <div class="gift-heart" onclick="openGift(this,'valentines-/val3.png')">💝</div>
+        <div class="gift-heart" onclick="openGift(this,'valentines/val1.png')">💝</div>
+        <div class="gift-heart" onclick="openGift(this,'valentines/val2.png')">💝</div>
+        <div class="gift-heart" onclick="openGift(this,'valentines/val3.png')">💝</div>
     </div>
-</div>
-
-<!-- 7 -->
-<div id="screen7" class="screen">
-    <h2>I love you endlessly 💗</h2>
-    <button class="heart" onclick="showScreen(8)">⭐</button>
-</div>
-
-<!-- 8 STAR NOTES -->
-<div id="screen8" class="screen stars-bg">
-    <h2>Tap the stars ✨</h2>
-
-    <div class="star-notes">
-        <div class="star" onclick="openNote(this,1)">⭐</div>
-        <div class="star" onclick="openNote(this,2)">⭐</div>
-        <div class="star" onclick="openNote(this,3)">⭐</div>
-        <div class="star" onclick="openNote(this,4)">⭐</div>
-    </div>
-
-    <div id="starReveal" style="display:none;">
-        <img src="valentines-/afterstars.png"><br>
-        <button class="heart" onclick="showScreen(9)">Next 💫</button>
-    </div>
-</div>
-
-<!-- 9 DATE -->
-<div id="screen9" class="screen">
-    <h2>December 8th 💕</h2>
-    <p>
-        December 8th was when we talked about what we were.
-        If that’s the day we got together… we may have missed an anniversary.
-    </p>
-    <p>
-        <strong>
-        2 months and 6 days<br>
-        9 weeks and 5 days<br><br>
-        1,632 hours<br>
-        97,920 minutes<br>
-        5,875,200 seconds
-        </strong>
-    </p>
 </div>
 
 <!-- overlays -->
@@ -209,17 +140,9 @@ button {
     <img id="giftImage">
 </div>
 
-<div id="noteOverlay">
-    <div id="noteBox">
-        <p id="noteText"></p>
-        <button onclick="closeNote()">close ✨</button>
-    </div>
-</div>
-
 <script>
 let currentScreen = 3;
 let heartsLeft = 3;
-let starsLeft = 4;
 
 function showScreen(n) {
     document.querySelectorAll('.screen').forEach(s => s.style.display='none');
@@ -242,27 +165,6 @@ function openGift(el,img) {
 function closeGift() {
     overlay.style.display='none';
     if (heartsLeft === 0) showScreen(7);
-}
-
-/* notes */
-function openNote(el,n) {
-    el.style.display='none';
-    starsLeft--;
-
-    let texts = [
-        "My love for you is infinite. With you, I see a future.",
-        "I call you my light because nothing shines brighter.",
-        "I crave you. Every moment with you feels like home.",
-        "I want every version of life to be just us."
-    ];
-
-    noteText.innerText = texts[n-1];
-    noteOverlay.style.display='flex';
-}
-
-function closeNote() {
-    noteOverlay.style.display='none';
-    if (starsLeft === 0) starReveal.style.display='block';
 }
 </script>
 
